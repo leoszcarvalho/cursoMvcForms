@@ -41,8 +41,56 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
+
+  
+
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Add(string date, 
+            string activityId, 
+            string duration, 
+            string intensity, 
+            string exclude, 
+            string notes)
+        {
+
+            ViewBag.Date = date;
+            ViewBag.ActivityId = activityId;
+            ViewBag.Duration = duration;
+            ViewBag.Intensity = intensity;
+            ViewBag.Exclude = exclude;
+            ViewBag.Notes = notes;
+
+            return View();
+
+        }
+
+
+        /*
+        ------> PRIMEIRA FORMA COM PARAMETROS DENTRO DO MÉTODO E RELACIONANDO O ACTIONNAME ADD
+        [ActionName("Add"), HttpPost]
+        public ActionResult AddPost()
+        {
+
+            string date = Request.Form["Date"];
+            Console.WriteLine("OK");
+
+            return View();
+
+        }
+        */
+
+        /*
+        ------> SEGUNDA E 'MELHOR' FORMA COM PARAMETROS SENDO PASSADOS COMO ATRIBUTOS DO MÉTODO COM TODOS OS CAMPOS
+                DO FORM QUE ESTÁ PRESENTE NA ACTION ADD TIRANDO A NECESSIDADE DE ADICIONAR A ACTIONNAME ADD AO MÉTODO
+                POIS O NOME DO MÉTODO AGORA É O MESMO QUE ADD E NÃO ADDPOST
+        */
+
+
+
+
 
         public ActionResult Edit(int? id)
         {
