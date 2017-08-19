@@ -10,8 +10,8 @@ namespace Treehouse.FitnessFrog.Controllers
     {
         // GET: Teste
         public ActionResult Index()
-        {   
-
+        {
+            string legal = "nice";
 
             return View();
         }
