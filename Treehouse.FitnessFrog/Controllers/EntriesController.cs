@@ -42,11 +42,30 @@ namespace Treehouse.FitnessFrog.Controllers
         public ActionResult Add()
         {
 
-  
+            var entry = new Entry() {
 
-            return View();
+                Date = DateTime.Today,
+
+            };
+
+            return View(entry);
         }
 
+
+        [HttpPost]
+        public ActionResult Add(Entry entry)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _entriesRepository.AddEntry(entry);
+            }
+
+            return View(entry);
+
+        }
+
+        /*
         [HttpPost]
         public ActionResult Add(DateTime? date, 
             int? activityId, 
@@ -55,7 +74,7 @@ namespace Treehouse.FitnessFrog.Controllers
             bool? exclude, 
             string notes)
         {
-            
+
             /*
             ViewBag.Date = date;
             ViewBag.ActivityId = activityId;
@@ -65,17 +84,19 @@ namespace Treehouse.FitnessFrog.Controllers
             ViewBag.Notes = notes;
             */
 
-            ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
-            ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
-            ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
-            ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
-            ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
-            ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
+        /*
+        ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+        ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue;
+        ViewBag.Duration = ModelState["Duration"].Value.AttemptedValue;
+        ViewBag.Intensity = ModelState["Intensity"].Value.AttemptedValue;
+        ViewBag.Exclude = ModelState["Exclude"].Value.AttemptedValue;
+        ViewBag.Notes = ModelState["Notes"].Value.AttemptedValue;
 
 
-            return View();
+        return View();
 
-        }
+    }
+*/
 
 
         /*
