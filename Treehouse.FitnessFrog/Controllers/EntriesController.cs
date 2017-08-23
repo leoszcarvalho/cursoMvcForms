@@ -59,6 +59,14 @@ namespace Treehouse.FitnessFrog.Controllers
             if (ModelState.IsValid)
             {
                 _entriesRepository.AddEntry(entry);
+
+                return RedirectToAction("Index");
+
+
+            }
+            else
+            {
+                ViewBag.Erro = "Não rolou";
             }
 
             return View(entry);
