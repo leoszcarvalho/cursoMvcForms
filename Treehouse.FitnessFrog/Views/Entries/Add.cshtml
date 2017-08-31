@@ -27,8 +27,15 @@
 <h2>@ViewBag.Title</h2>
 
 
-@ViewBag.Erro
+@*ViewBag.Erro*@
 
+<!--Este apenas mostra uma lista com todas as mensagens de erro-->
+@*Html.ValidationSummary()*@
+
+<!--Com parâmetro true só retorna mensagens de erro globais-->
+@*Html.ValidationSummary(true)*@
+
+@Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" } )
 
 <!--Forma de criar o HTML do Form pelo C#, abaixo desse bloco using em comentário está a forma com formulário normal-->
 @using (Html.BeginForm())
@@ -48,6 +55,8 @@
                 @Html.LabelFor(m => m.ActivityId, new { @class = "control-label" })
                 @Html.DropDownListFor(m => m.ActivityId,
                     (SelectList)ViewBag.ActivitiesSelectListItems, "Select an Activity", new { @class = "form-control" })
+                
+                @Html.ValidationMessageFor(m => m.ActivityId)
             </div>
 
             <div class="form-group">
