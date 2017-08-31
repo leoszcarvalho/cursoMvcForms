@@ -36,7 +36,10 @@ namespace Treehouse.FitnessFrog.Controllers
             ViewBag.TotalActivity = totalActivity;
             ViewBag.AverageDailyActivity = (totalActivity / (double)numberOfActiveDays);
 
-            return View(entries);
+            //return View(entries);
+            //Abaixo como colocar uma action com layout alternativo fora do padrão
+            return View("Index", "~/Views/Shared/_LayoutAlternativo.cshtml", entries);
+
         }
 
         public ActionResult Add()
@@ -52,12 +55,24 @@ namespace Treehouse.FitnessFrog.Controllers
                 Data.Data.Activities,"Id", "Name");
 
             return View(entry);
+
+            //return View("Index", "~/Views/Shared/_LayoutAlternativo.cshtml", entry);
+
+            //view com tds os parâmetros possíveis
+            //return View("Index", "~/Views/Shared/_StaffLayout.cshtml", someViewModel);
+
         }
 
 
         [HttpPost]
         public ActionResult Add(Entry entry)
         {
+
+            //Se não houverem erros de validação no campo 'duration' então se certifica q ele é maior do que zero
+            if (ModelState.IsValidField("Duration") && entry.Duration > 0)
+            {
+                ModelState.AddModelError("Duration", "The Duration field value must be greater than '0'. ");
+            }
 
             if (ModelState.IsValid)
             {

@@ -89,6 +89,10 @@ namespace Treehouse.FitnessFrog.Models
         /// <summary>
         /// The notes for the entry.
         /// </summary>
+        
+        //É possível adicionar as validações diretamente nas models isso são data annotations
+        [Required]
+        [MaxLength(200, ErrorMessage = "The Notes field cannot be longer than 200 characters")]
         public string Notes { get; set; }
     }
 }
