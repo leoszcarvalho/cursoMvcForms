@@ -35,11 +35,12 @@
 <!--Com parâmetro true só retorna mensagens de erro globais-->
 @*Html.ValidationSummary(true)*@
 
-@Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" } )
 
 <!--Forma de criar o HTML do Form pelo C#, abaixo desse bloco using em comentário está a forma com formulário normal-->
 @using (Html.BeginForm())
 {
+
+    @Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" })
 
     <div class="row">
 
